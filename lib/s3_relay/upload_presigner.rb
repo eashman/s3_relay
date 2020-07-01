@@ -25,6 +25,7 @@ module S3Relay
         "AWSAccessKeyID"               => access_key_id,
         "x-amz-server-side-encryption" => "AES256",
         "key"                          => "#{bucket_prefix}/${filename}",
+        "x-amz-meta-uuid"              => "#{uuid}",
         "success_action_status"        => "201",
         "acl"                          => acl
       }
@@ -44,7 +45,7 @@ module S3Relay
           { "success_action_status" => "201" },
           ["starts-with", "$content-type", ""],
           ["starts-with", "$content-disposition", ""],
-          ["starts-with", "$key", "#{uuid}/"]
+          ["starts-with", "$key", "#{bucket_prefix}/"]
         ]
       }
     end
