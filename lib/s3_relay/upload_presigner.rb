@@ -5,7 +5,7 @@ module S3Relay
 
     def initialize(options={})
       @expires = (options[:expires] || 1.minute.from_now).utc.xmlschema
-      @uuid    = SecureRandom.uuid
+      @uuid    = "assets"
     end
 
     def form_data
