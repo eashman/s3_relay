@@ -15,10 +15,6 @@ module S3Relay
       ENV["S3_RELAY_REGION"]
     end
 
-    def bucket_prefix
-      ENV["S3_RELAY_BUCKET_PREFIX"]
-    end
-
     def bucket
       ENV["S3_RELAY_BUCKET"]
     end
