@@ -14,7 +14,8 @@ module S3Relay
           "endpoint"  => endpoint,
           "policy"    => encoded_policy,
           "signature" => signature,
-          "uuid"      => uuid
+          "uuid"      => uuid,
+          "prefix"     => bucket_prefix
         )
     end
 

@@ -16,7 +16,7 @@ class S3Relay::UploadsController < ApplicationController
         parent_type: @upload.parent_type,
         parent_id: @upload.parent_id,
         user_id: user_attrs[:user_id],
-        prefix: bucket_prefix
+        prefix: @upload.prefix
       }
       render json: data, status: 201
     else
