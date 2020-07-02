@@ -16,7 +16,7 @@ module S3Relay
     end
 
     def bucket_prefix
-      ENV["S3_RELAY_ACCESS_KEY_ID"]
+      ENV["S3_RELAY_BUCKET_PREFIX"]
     end
 
     def bucket
