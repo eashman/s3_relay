@@ -12,7 +12,7 @@ module S3Relay
             .where(
               parent_type: self.class.to_s,
               parent_id:   self.id,
-              upload_type: upload_type
+              upload_type: upload_type,
             )
         end
       else
@@ -23,7 +23,7 @@ module S3Relay
             .where(
               parent_type: self.class.to_s,
               parent_id:   self.id,
-              upload_type: upload_type
+              upload_type: upload_type,
             )
             .order("pending_at DESC").last
         end
@@ -41,7 +41,7 @@ module S3Relay
         return if new_uuids.blank?
 
         S3Relay::Upload.where(uuid: new_uuids, upload_type: upload_type)
-          .update_all(parent_type: self.class.to_s, parent_id: self.id)
+          .update_all(parent_type: self.class.to_s, parent_id: self.id, prefix: ENV['S3_RELAY_BUCKET_PREFIX'])
       end
 
     end

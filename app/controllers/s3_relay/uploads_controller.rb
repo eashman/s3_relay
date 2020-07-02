@@ -16,7 +16,7 @@ class S3Relay::UploadsController < ApplicationController
         parent_type: @upload.parent_type,
         parent_id: @upload.parent_id,
         user_id: user_attrs[:user_id],
-        prefix: @upload.prefix
+        prefix: bucket_prefix
       }
       render json: data, status: 201
     else
@@ -25,6 +25,10 @@ class S3Relay::UploadsController < ApplicationController
   end
 
   protected
+
+  def bucket_prefix
+    ENV["S3_RELAY_BUCKET_PREFIX"]
+  end
 
   def authenticate
     if respond_to?(:authenticate_for_s3_relay)
@@ -55,7 +59,7 @@ class S3Relay::UploadsController < ApplicationController
       uuid:         params[:uuid],
       filename:     params[:filename],
       content_type: params[:content_type],
-      prefix: params[:bucket_prefix]
+      prefix: bucket_prefix
     }
 
     attrs.merge!(parent_attrs)
