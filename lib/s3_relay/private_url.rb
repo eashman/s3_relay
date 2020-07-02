@@ -5,7 +5,8 @@ module S3Relay
 
     def initialize(uuid, file, options={})
       filename = Addressable::URI.escape(file).gsub("+", "%2B")
-      @path    = [uuid, filename].join("/")
+      #  @path    = [uuid, filename].join("/")
+      @path    = [bucket_prefix, filename].join("/")
       @expires = (options[:expires] || 10.minutes.from_now).to_i
     end
 

@@ -15,7 +15,8 @@ class S3Relay::UploadsController < ApplicationController
         private_url: @upload.private_url,
         parent_type: @upload.parent_type,
         parent_id: @upload.parent_id,
-        user_id: user_attrs[:user_id]
+        user_id: user_attrs[:user_id],
+        prefix: bucket_prefix
       }
       render json: data, status: 201
     else
@@ -53,7 +54,8 @@ class S3Relay::UploadsController < ApplicationController
       upload_type:  params[:association].try(:classify),
       uuid:         params[:uuid],
       filename:     params[:filename],
-      content_type: params[:content_type]
+      content_type: params[:content_type],
+      prefix: params[:bucket_prefix]
     }
 
     attrs.merge!(parent_attrs)
